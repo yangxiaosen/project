@@ -1,4 +1,4 @@
-{
+f{
   "name": "project",
   "version": "0.1.0",
   "description": "nothing",
@@ -72,7 +72,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/lqygo123/project.git"
   },
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
