@@ -69,8 +69,7 @@ app.get('/getCaptcha.json',function (req, res) {
 
 app.use(function (req, res, next) {
   if (req.url === '/signUp.json') {
-    const cheak = true
-    if (cheak) {
+    if (req.method == 'POST') {
       if (req.body) {
         const obj = {
           userId: store.user.length + 1,
@@ -83,6 +82,7 @@ app.use(function (req, res, next) {
         res.send("sign up success")
       }
     } else {
+      res.statusCode = 405;
       res.send("sign up fail")
     }
   }

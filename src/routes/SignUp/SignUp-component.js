@@ -8,35 +8,35 @@
 import React from 'react'
 import $ from 'jquery'
 import TermsOfService from './TermsOfService'
+// import PopUp from './SignUp-popUp/SignUp-popUp-component'
+import PopUp from './SignUp-popUp/SignUp-popUp-container'
 
-const USERNAME_EMPTY = 0
-const USERNAME_INVALID_EXIST = 1
-const USERNAME_INVALID_TOO_SHORT = 2
-const USERNAME_INVALID_TOO_LONG = 3
-const USERNAME_INVALID_ERROR_FORMAT = 5
-const USERNAME_CHECKING = 6
-const USERNAME_VALID = 10
-
-
-const PASSWORD_EMPTY = 0
-const PASSWORD_TOO_SHORT = 1
-const PASSWORD_TOO_LONG = 2
-const PASSWORD_VALID_WEAK = 3
-const PASSWORD_VALID_MIDDLE = 4
-const PASSWORD_VALID_STRONG = 5
+const USERNAME_EMPTY = 0;
+const USERNAME_INVALID_EXIST = 1;
+const USERNAME_INVALID_TOO_SHORT = 2;
+const USERNAME_INVALID_TOO_LONG = 3;
+const USERNAME_INVALID_ERROR_FORMAT = 5;
+const USERNAME_CHECKING = 6;
+const USERNAME_VALID = 10;
 
 
-const CHECK_PASSWORD_EMPTY = 0
-const CHECK_PASSWORD_INCONFORMITY = 1
-const CHEAK_PASSWORD_VALID = 2
+const PASSWORD_EMPTY = 0;
+const PASSWORD_TOO_SHORT = 1;
+const PASSWORD_TOO_LONG = 2;
+const PASSWORD_VALID_WEAK = 3;
+const PASSWORD_VALID_MIDDLE = 4;
+const PASSWORD_VALID_STRONG = 5;
 
+const CHECK_PASSWORD_EMPTY = 0;
+const CHECK_PASSWORD_INCONFORMITY = 1;
+const CHECK_PASSWORD_VALID = 2;
 
-const CAPTCHA_EMPTY = 0
-const CAPTCHA_INVALID = 1
-const CAPTCHA_VALID = 2
+const CAPTCHA_EMPTY = 0;
+const CAPTCHA_INVALID = 1;
+const CAPTCHA_VALID = 2;
 
-const ACCESS_VALID = true
-const ACCESS_INVALID = false
+const ACCESS_VALID = true;
+const ACCESS_INVALID = false;
 
 const SignUp = React.createClass({
   getInitialState(){
@@ -48,7 +48,7 @@ const SignUp = React.createClass({
     }
   },
   usernameCheck() {
-    const that = this
+    const that = this;
     const emailPatterns = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     if(!this.refs.username.value) {
       that.setState({usernameState: USERNAME_EMPTY});
@@ -78,11 +78,11 @@ const SignUp = React.createClass({
   usernameExistSpan(usernameState) {
     switch(usernameState) {
       case USERNAME_INVALID_EXIST:
-        return <span> X </span>
+        return <span> X </span>;
       case USERNAME_VALID:
-        return <span> √ </span>
+        return <span> √ </span>;
       case USERNAME_EMPTY:
-        return <span>   </span>
+        return <span>   </span>;
       default :
         return <span> X </span>
     }
@@ -91,13 +91,13 @@ const SignUp = React.createClass({
     switch(this.state.usernameState) {
       case USERNAME_INVALID_EXIST:
       case USERNAME_INVALID_ERROR_FORMAT:
-        return "has-error"
+        return "has-error";
       case USERNAME_CHECKING:
-        return "has-warning"
+        return "has-warning";
       case USERNAME_VALID:
-        return "has-success"
+        return "has-success";
       case USERNAME_EMPTY:
-        return " "
+        return " ";
       default :
         return "has-error"
     }
@@ -105,21 +105,21 @@ const SignUp = React.createClass({
   usernameVerificationSpan(){
     switch(this.state.usernameState) {
       case USERNAME_INVALID_EXIST:
-        return <span className="help-block"> 邮箱已被使用 </span>
+        return <span className="help-block"> 邮箱已被使用 </span>;
       case USERNAME_VALID:
-        return <span className="help-block"> 邮箱可用 </span>
+        return <span className="help-block"> 邮箱可用 </span>;
       case USERNAME_INVALID_ERROR_FORMAT:
-        return <span className="help-block"> 错误的邮箱格式 </span>
+        return <span className="help-block"> 错误的邮箱格式 </span>;
       case USERNAME_INVALID_TOO_SHORT:
-        return <span className="help-block"> 用户名太短 </span>
+        return <span className="help-block"> 用户名太短 </span>;
       case USERNAME_INVALID_TOO_LONG:
-        return <span className="help-block"> 用户名太长 </span>
+        return <span className="help-block"> 用户名太长 </span>;
       default:
         return <span className="help-block"> 请输入您的邮箱 </span>
     }
   },
   passwordCheck() {
-    const that = this
+    const that = this;
     if(!this.refs.password.value) {
       that.setState({passwordState: PASSWORD_EMPTY});
     } else if (this.refs.password.value.length < 4) {
@@ -134,57 +134,56 @@ const SignUp = React.createClass({
   passwordState() {
     switch(this.state.passwordState) {
       case PASSWORD_EMPTY:
-        return " "
+        return " ";
       case PASSWORD_VALID_WEAK:
-        return "has-warning"
+        return "has-warning";
       case PASSWORD_VALID_MIDDLE:
       case PASSWORD_VALID_STRONG:
-        return "has-success"
+        return "has-success";
       case PASSWORD_TOO_LONG:
       case PASSWORD_TOO_SHORT:
-        return "has-error"
+        return "has-error";
       default:
         return " "
     }
   },
   passwordCheckSpan(passwordState) {
-    const that = this
+    // if (this.state.checkPasswordState != CHECK_PASSWORD_EMPTY) {
+    //   this.checkPasswordCheck()
+    // }
     switch(passwordState) {
       case PASSWORD_EMPTY:
-          return <span className="help-block">请输入密码</span>
+          return <span className="help-block">请输入密码</span>;
       case PASSWORD_TOO_LONG:
-        return  <span className="help-block">密码超过二十位</span>
+        return  <span className="help-block">密码超过二十位</span>;
       case PASSWORD_TOO_SHORT:
-        return  <span className="help-block">密码长度短于四位</span>
+        return  <span className="help-block">密码长度短于四位</span>;
       case PASSWORD_VALID_MIDDLE:
-        return  <span className="help-block">密码强度一般</span>
+        return  <span className="help-block">密码强度一般</span>;
       case PASSWORD_VALID_STRONG:
-        return  <span className="help-block">密码强度强</span>
+        return  <span className="help-block">密码强度强</span>;
       case PASSWORD_VALID_WEAK:
-        return  <span className="help-block">密码强度弱</span>
+        return  <span className="help-block">密码强度弱</span>;
       default:
         return ""
     }
-    if(this.state.checkPasswordState != CHECK_PASSWORD_EMPTY) {
-      this.checkPasswordCheck()
-    }
   },
   checkPasswordCheck() {
-    const that = this
+    const that = this;
     if(!this.refs.checkPassword.value) {
       that.setState({checkPasswordState: CHECK_PASSWORD_EMPTY});
     } else if (this.refs.checkPassword.value != this.refs.password.value) {
       that.setState({checkPasswordState: CHECK_PASSWORD_INCONFORMITY});
     } else if (this.refs.checkPassword.value == this.refs.password.value) {
-      that.setState({checkPasswordState: CHEAK_PASSWORD_VALID});
+      that.setState({checkPasswordState: CHECK_PASSWORD_VALID});
     }
   },
   checkPasswordState() {
     switch(this.state.checkPasswordState) {
       case CHECK_PASSWORD_EMPTY:
-        return " "
-      case CHEAK_PASSWORD_VALID:
-        return "has-success"
+        return " ";
+      case CHECK_PASSWORD_VALID:
+        return "has-success";
       case CHECK_PASSWORD_INCONFORMITY:
         return "has-error"
     }
@@ -192,15 +191,15 @@ const SignUp = React.createClass({
   checkPasswordSpan(checkPasswordState) {
     switch(checkPasswordState) {
       case CHECK_PASSWORD_EMPTY:
-        return <span className="help-block">再次输入密码</span>
+        return <span className="help-block">再次输入密码</span>;
       case CHECK_PASSWORD_INCONFORMITY:
-        return <span className="help-block">两次密码输入不一致</span>
-      case CHEAK_PASSWORD_VALID:
+        return <span className="help-block">两次密码输入不一致</span>;
+      case CHECK_PASSWORD_VALID:
         return <span className="help-block">两次密码输入一致</span>
     }
   },
-  getCaptcha(str) {
-    const that = this.arguments
+  getCaptcha() {
+    // const that = this.arguments;
     $.ajax({
       method: 'GET',
       url: 'getCaptcha.json'
@@ -211,8 +210,7 @@ const SignUp = React.createClass({
   changeAccess() {
     this.setState({accessState: (this.state.accessState ? ACCESS_INVALID : ACCESS_VALID)})
   },
-  signUp(e) {
-    console.log(e)
+  signUp() {
     $.ajax({
       method: 'POST',
       url: 'signUp.json',
@@ -224,18 +222,32 @@ const SignUp = React.createClass({
 
     })
   },
-  signUpButton(e) {
+  signUpButton() {
     if(
       this.state.usernameState == USERNAME_VALID
       && (this.state.passwordState == PASSWORD_VALID_MIDDLE
         || this.state.passwordState == PASSWORD_VALID_WEAK
         || this.state.passwordState == PASSWORD_VALID_STRONG)
-      && this.state.checkPasswordState == CHEAK_PASSWORD_VALID
+      && this.state.checkPasswordState == CHECK_PASSWORD_VALID
       && this.state.accessState == ACCESS_VALID
     ) {
       return <button onClick={this.signUp} className="btn btn-primary pull-right"> 注册 </button>
     } else {
       return <button disabled="true" className="btn btn-primary pull-right"> 注册</button>
+    }
+  },
+  signUpPopUp() {
+    if(
+      this.state.usernameState == USERNAME_VALID
+      && (this.state.passwordState == PASSWORD_VALID_MIDDLE
+      || this.state.passwordState == PASSWORD_VALID_WEAK
+      || this.state.passwordState == PASSWORD_VALID_STRONG)
+      && this.state.checkPasswordState == CHECK_PASSWORD_VALID
+      && this.state.accessState == ACCESS_VALID
+    ) {
+      return <PopUp disable={false} email={this.refs.username.value} password={this.refs.password.value}> 注册 </PopUp>
+    } else {
+      return <PopUp disable={true}> 注册</PopUp>
     }
   },
   render() {
@@ -263,16 +275,17 @@ const SignUp = React.createClass({
           <label>
             <span> 接受 <TermsOfService/> {'  '} </span>
           </label>
-          { this.signUpButton() }
+          { this.signUpPopUp() }
+
 
 
 
       </div>
     )
   }
-})
+});
 
 SignUp.propTypes = {
   // usernameState:   React.PropTypes.number.isRequired,
-}
+};
 export default SignUp
