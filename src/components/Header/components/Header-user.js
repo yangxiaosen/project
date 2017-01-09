@@ -6,9 +6,38 @@ import { browserHistory } from 'react-router'
 import $ from 'jquery'
 
 const User = React.createClass({
+  componentDidMount() {
+    const that = this;
+    //初始化的时候向服务器检查session,判断是否已经登录
+    $.ajax({
+      url: "http://192.168.1.4:3000/api/project/signin",
+      method: "GET",
+    }).done(function (data) {
+      console.log(data)
+      if(data != "sign first") {
+        console.log(that)
+        that.props.login(data)
+      }
+    })
+  },
   btnLogin (e) {
+    const that = this;
     e.preventDefault()
-    this.props.login(this.refs.user.value)
+    $.ajax({
+      url: "http://192.168.1.4:3000/api/project/signin",
+      method: "POST",
+      data: {
+        username: that.refs.username.value,
+        password: that.refs.password.value,
+      }
+    }).done(function (data) {
+      console.log(data)
+      if(data == "sign failed, name or password error") {
+        alert("账号或者密码错误")
+      } else {
+        that.props.login(that.refs.username.value)
+      }
+    })
   },
   btnsignOut (e) {
     e.preventDefault()
@@ -47,13 +76,14 @@ const User = React.createClass({
     }
     return (
       <div>
-        <input ref='user' type='text' placeholder="user"/>
+        <input ref='username' type='text' placeholder="user"/>
         <input ref='password' type='text' placeholder="password"/>
         <button onClick={this.btnLogin}>login</button>
         <button onClick={this.btnSignUp}>sign up</button>
       </div>
     )
   },
+
   render () {
     const { isLogin, user } = this.props
     return (

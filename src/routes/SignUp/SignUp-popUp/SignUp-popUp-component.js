@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import { Popover, Tooltip, Button, Modal, OverlayTrigger } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
 import $ from 'jquery'
 
 const STATE_SENDING = "SENDING"
@@ -29,7 +30,8 @@ const SignUpPopUp = React.createClass({
     const that = this;
     this.setState({ showModal: true });
     $.ajax({
-      url: './signUp.json',
+      //url: './signUp.json',
+      url: 'api/project/user/createUser',
       method: 'POST',
       data: {
         username: that.props.email,
@@ -40,9 +42,10 @@ const SignUpPopUp = React.createClass({
     }).fail(function () {
       that.setState({ sendState: STATE_FAIL})
     })
-
-
-
+  },
+  closeAndReturn() {
+    this.setState({ showModal: false });
+    browserHistory.push('/')
   },
 
   header(sendState) {
@@ -54,6 +57,7 @@ const SignUpPopUp = React.createClass({
           </Modal.Header>
         )
       case STATE_SUCCESS:
+        this.props.login(this.props.email)
         return (
           <Modal.Header>
             <Modal.Title>注册成功</Modal.Title>
@@ -86,7 +90,7 @@ const SignUpPopUp = React.createClass({
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.closeAndReturn}>Close</Button>
           </Modal.Footer>
 
         </Modal>

@@ -61,7 +61,8 @@ const SignUp = React.createClass({
     } else {
       $.ajax({
         method: 'get',
-        url: '/accountCheak.json?username=' + this.refs.username.value,
+        //url: '/accountCheak.json?username=' + this.refs.username.value,
+        url: '/api/project/user/isNameExit?username=' + this.refs.username.value,
         // url: 'http://192.168.1.62:3000/api/project/user/isNameExit?name=' + this.refs.username.value
         beforeSend: function() {
           that.setState({usernameState: USERNAME_CHECKING})
@@ -213,7 +214,8 @@ const SignUp = React.createClass({
   signUp() {
     $.ajax({
       method: 'POST',
-      url: 'signUp.json',
+      //url: 'signUp.json',
+      url: "api/project/user/createUser",
       data: {
         username: this.refs.username.value,
         password: this.refs.password.value

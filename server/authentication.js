@@ -58,7 +58,7 @@ app.get('/accountCheak.json',function (req, res) {
   if(store.usernameSet.indexOf(username) != -1) {
     res.send({ exist: true })
   } else {
-    res.send({ exist: false})
+    res.send({ exist: false })
   }
 })
 

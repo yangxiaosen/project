@@ -1,28 +1,9 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import '../Header.scss'
-import User from './Header-user'
+import User from '../containers/Header-container'
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
-export const Header = React.createClass({
-  render () {
-    return (
-      <nav className="navbar navbar-default">
-        <IndexLink to='/' activeClassName='route--active'>
-          Home
-        </IndexLink>
-        {' · '}
-        <Link to='/counter' activeClassName='route--active'>
-          Counter
-        </Link>
-        {' · '}
-        <Link to='/about' activeClassName='route--active'>
-          About
-        </Link>
-      </nav>
-    )
-  }
-})
 
 export const HeaderWhitBootstrap = React.createClass({
   render () {
@@ -48,8 +29,7 @@ export const HeaderWhitBootstrap = React.createClass({
             </NavDropdown>
           </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1}><Link to="signup" activeClassName="route--active">signup</Link></NavItem>
-          <NavItem>&nbsp;&nbsp;&nbsp;&nbsp;</NavItem>
+          <NavItem eventKey={1}><User/></NavItem>
         </Nav>
         </Navbar.Collapse>
       </Navbar>

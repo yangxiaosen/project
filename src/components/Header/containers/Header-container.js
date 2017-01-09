@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { login, signOut } from '../modules/Header-module'
 
 // components
-import Header from '../components/Header'
+import Header from '../components/Header-user'
 
 const mapDispatchToProps = {
   login: (user) => login(user),
