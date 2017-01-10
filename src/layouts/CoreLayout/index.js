@@ -3,5 +3,4 @@
  */
 import CoreLayout from './LayoutContainer'
 
-
 export default CoreLayout

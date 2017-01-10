@@ -37,31 +37,29 @@ const About = React.createClass({
         </form>
 
         {/*    下面开始bootstrap代码调试     */}
-        <br/><br/><br/>
+        <br /><br /><br />
 
-
-        <form role="form">
-          <div className="form-group">
+        <form role='form'>
+          <div className='form-group'>
             <label>Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+            <input type='email' className='form-control' id='exampleInputEmail1' placeholder='Enter email' />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+            <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Password' />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>File input</label>
-            <input type="file" id="exampleInputFile"/>
-              <p className="help-block">Example block-level help text here.</p>
+            <input type='file' id='exampleInputFile' />
+            <p className='help-block'>Example block-level help text here.</p>
           </div>
-          <div className="checkbox">
+          <div className='checkbox'>
             <label>
-              <input type="checkbox"/> Check me out
+              <input type='checkbox' /> Check me out
             </label>
           </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          <button type='submit' className='btn btn-default'>Submit</button>
         </form>
-
 
       </div>
     )

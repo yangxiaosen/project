@@ -6,34 +6,34 @@ import { browserHistory } from 'react-router'
 import $ from 'jquery'
 
 const User = React.createClass({
-  componentDidMount() {
-    const that = this;
-    //初始化的时候向服务器检查session,判断是否已经登录
+  componentDidMount () {
+    const that = this
+    // 初始化的时候向服务器检查session,判断是否已经登录
     $.ajax({
-      url: "/api/project/signin",
-      method: "GET",
+      url: '/api/project/signin',
+      method: 'GET'
     }).done(function (data) {
       console.log(data)
-      if(data != "sign first") {
+      if (data !== 'sign first') {
         console.log(that)
         that.props.login(data)
       }
     })
   },
   btnLogin (e) {
-    const that = this;
+    const that = this
     e.preventDefault()
     $.ajax({
-      url: "/api/project/signin",
-      method: "POST",
+      url: '/api/project/signin',
+      method: 'POST',
       data: {
         username: that.refs.username.value,
-        password: that.refs.password.value,
+        password: that.refs.password.value
       }
     }).done(function (data) {
       console.log(data)
-      if(data == "sign failed, name or password error") {
-        alert("账号或者密码错误")
+      if (data === 'sign failed, name or password error') {
+        alert('账号或者密码错误')
       } else {
         that.props.login(that.refs.username.value)
       }
@@ -42,35 +42,16 @@ const User = React.createClass({
   btnsignOut (e) {
     e.preventDefault()
     $.ajax({
-      url: "/api/project/signout",
-      method: "GET"
+      url: '/api/project/signout',
+      method: 'GET'
     })
     this.props.signOut()
   },
-  btnTest (e) {
-    e.preventDefault()
-    const obj = {
-      msg: "ssss",
-      sssdsd: [12,222]
-    }
-    $.ajax({
-        url: '/test.json',
-        type: 'POST',
-        dataType: "json",
-        data: {
-          aaa: {
-            msg: "sss",
-            o: obj,
-            asdasd: "sssss"
-          }
-        }
-    })
-  },
-  btnSignUp (e) {
+  btnSignUp () {
     browserHistory.push('/signUp')
   },
-  user (isLogin, user) {
-    if(isLogin) {
+  user (isLogin) {
+    if (isLogin) {
       return (
         <div>
           <div> user: {this.props.user} </div>
@@ -80,8 +61,8 @@ const User = React.createClass({
     }
     return (
       <div>
-        <input ref='username' type='text' placeholder="user"/>
-        <input ref='password' type='text' placeholder="password"/>
+        <input ref='username' type='text' placeholder='user' />
+        <input ref='password' type='text' placeholder='password' />
         <button onClick={this.btnLogin}>login</button>
         <button onClick={this.btnSignUp}>sign up</button>
       </div>
@@ -98,6 +79,8 @@ const User = React.createClass({
   }
 })
 
+User.propTypes = {
 
+}
 
 export default User

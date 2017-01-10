@@ -22,7 +22,6 @@ let render = () => {
     <AppContainer store={store} routes={routes} />,
     MOUNT_NODE
   )
-
 }
 
 // This code is excluded from production bundle

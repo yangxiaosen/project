@@ -2,35 +2,35 @@
  * Created by luqianyu on 2017/1/6.
  */
 import React from 'react'
-import { Popover, Tooltip, Button, Modal, OverlayTrigger } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import $ from 'jquery'
 
-const STATE_SENDING = "SENDING"
-const STATE_SUCCESS = "SUCCESS"
-const STATE_FAIL = "FAIL"
+const STATE_SENDING = 'SENDING'
+const STATE_SUCCESS = 'SUCCESS'
+const STATE_FAIL = 'FAIL'
 
 const SignUpPopUp = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return {
       showModal: false,
       sendState: STATE_SENDING
-    };
+    }
   },
 
-  close() {
-    this.setState({ showModal: false });
+  close () {
+    this.setState({ showModal: false })
   },
 
-  open() {
-    this.setState({ showModal: true });
+  open () {
+    this.setState({ showModal: true })
   },
 
-  signUp() {
-    const that = this;
-    this.setState({ showModal: true });
+  signUp () {
+    const that = this
+    this.setState({ showModal: true })
     $.ajax({
-      //url: './signUp.json',
+      // url: './signUp.json',
       url: 'api/project/user/createUser',
       method: 'POST',
       data: {
@@ -38,18 +38,18 @@ const SignUpPopUp = React.createClass({
         password: that.props.password
       }
     }).done(function () {
-      that.setState({ sendState: STATE_SUCCESS})
+      that.setState({ sendState: STATE_SUCCESS })
     }).fail(function () {
-      that.setState({ sendState: STATE_FAIL})
+      that.setState({ sendState: STATE_FAIL })
     })
   },
-  closeAndReturn() {
-    this.setState({ showModal: false });
+  closeAndReturn () {
+    this.setState({ showModal: false })
     browserHistory.push('/')
   },
 
-  header(sendState) {
-    switch ( sendState ) {
+  header (sendState) {
+    switch (sendState) {
       case STATE_SENDING:
         return (
           <Modal.Header>
@@ -72,11 +72,10 @@ const SignUpPopUp = React.createClass({
     }
   },
 
-  render() {
-    const nothing = "i am no thing";
+  render () {
     return (
       <div>
-        <button className="btn btn-primary pull-right" disabled={this.props.disable} onClick={this.signUp}>注册</button>
+        <button className='btn btn-primary pull-right' disabled={this.props.disable} onClick={this.signUp}>注册</button>
 
         <Modal show={this.state.showModal} onHide={this.open}>
 
@@ -86,7 +85,7 @@ const SignUpPopUp = React.createClass({
             <h4>Text in a modal</h4>
             <hr />
             <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <p>Cras mattis coos.</p>
           </Modal.Body>
 
           <Modal.Footer>
@@ -95,9 +94,12 @@ const SignUpPopUp = React.createClass({
 
         </Modal>
       </div>
-    );
+    )
   }
-});
+})
 
+SignUpPopUp.propTypes = {
+
+}
 
 export default SignUpPopUp
