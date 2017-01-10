@@ -35,13 +35,13 @@ const SendEmail = require('./db_services/common_functions/sendEmail');
 
 const Users = mongoose.model('UserModel', require('./db_services/user/user_models').UserSchema);
 
-app.use(cookieParser('what do you want to do?'));
+//app.use(cookieParser('what do you want to do?'));
 app.use(session({
 
     secret: "what do you want to do?", //secret的值建议使用128个随机字符串
     cookie: {maxAge:  1000 * 60 * 20}, //过期时间
-    // resave: true, // 即使 session 没有被修改，也保存 session 值，默认为 true
-    // saveUninitialized: false,
+    resave: true, // 即使 session 没有被修改，也保存 session 值，默认为 true
+    saveUninitialized: false,
     store: new MongoStore({
         mongooseConnection: mongoose.connection //使用已有的数据库连接
     })
@@ -51,6 +51,7 @@ app.use(session({
  * 判断是否已登录过了
  */
 app.get('/api/project/signin', function (req, res) {
+  console.log(req.session)
     if(req.session.sign) {
         console.log(req.session);
         res.send(req.session.username);
@@ -67,6 +68,8 @@ app.post('/api/project/signin', function (req, res) {
     let username = req.body.username;
     let password = req.body.password;
     let query = {username: username, password: password};
+
+
     Users.find(query).exec(function (err, user) {
         if(err) {
             return res.status(400).send ({
@@ -93,7 +96,6 @@ app.get('/api/project/signout', function (req, res) {
     if(req.session.sign) {
         req.session.sign = false;
     }
-
     res.send('signout success');
 });
 

@@ -10,7 +10,7 @@ const User = React.createClass({
     const that = this;
     //初始化的时候向服务器检查session,判断是否已经登录
     $.ajax({
-      url: "http://192.168.1.4:3000/api/project/signin",
+      url: "/api/project/signin",
       method: "GET",
     }).done(function (data) {
       console.log(data)
@@ -24,7 +24,7 @@ const User = React.createClass({
     const that = this;
     e.preventDefault()
     $.ajax({
-      url: "http://192.168.1.4:3000/api/project/signin",
+      url: "/api/project/signin",
       method: "POST",
       data: {
         username: that.refs.username.value,
@@ -41,6 +41,10 @@ const User = React.createClass({
   },
   btnsignOut (e) {
     e.preventDefault()
+    $.ajax({
+      url: "/api/project/signout",
+      method: "GET"
+    })
     this.props.signOut()
   },
   btnTest (e) {

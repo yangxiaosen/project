@@ -149,16 +149,17 @@ app.use(function (req, res, next) {
 //   })
 //   next()
 // })
-//
+
 
 app.use(session({
   secret: secret,
   cookie: {
-    maxAge: 60 * 1000 * 60 * 24
+    maxAge: 123123123
   }
 }))
 
 app.use(function (req, res, next) {
+  console.log(req.session)
   if (req.session.counter) {
     req.session.counter++
   } else {
