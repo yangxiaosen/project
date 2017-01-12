@@ -1,6 +1,5 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import '../Header.scss'
 import User from '../containers/Header-container'
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
