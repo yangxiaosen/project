@@ -4,6 +4,7 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import $ from 'jquery'
+import WechatLogin from './Login-wechat'
 
 const User = React.createClass({
   componentDidMount () {
@@ -65,6 +66,7 @@ const User = React.createClass({
         <input ref='password' type='text' placeholder='password' />
         <button onClick={this.btnLogin}>login</button>
         <button onClick={this.btnSignUp}>sign up</button>
+        <WechatLogin> </WechatLogin>
       </div>
     )
   },
