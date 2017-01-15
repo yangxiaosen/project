@@ -20,6 +20,12 @@ const About = React.createClass({
       console.log(data.number)
       console.log(data.str)
     })
+    $.ajax({
+      method: 'get',
+      url: 'api.hzy.pw/saying/v1/ciba',
+    }).done(function (data) {
+
+    })
   },
   render () {
     return (
