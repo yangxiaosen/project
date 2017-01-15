@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "0.2.0",
-  "description": "nothing",
+  "description": "",
   "main": "index.js",
   "engines": {
     "node": ">=4.5.0",
@@ -74,9 +74,10 @@
     "type": "git",
     "url": "git+https://github.com/lqygo123/project.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "arluber aferica",
   "license": "MIT",
   "dependencies": {
+    "ajax-request": "^1.2.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.15.0",

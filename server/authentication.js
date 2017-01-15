@@ -5,6 +5,7 @@
 // const OAuth = require('wechat-oauth');
 // const client = new OAuth('your appid', 'your secret');
 const app = require('./main')
+var request = require('ajax-request')
 //
 // const jwt = require('jsonwebtoken')
 // const cookieParser = require('cookie-parser')
@@ -155,22 +156,25 @@ const app = require('./main')
 //   }
 // }))
 //
-// app.use(function (req, res, next) {
-//   console.log(req.session)
-//   if (req.session.counter) {
-//     req.session.counter++
-//   } else {
-//     req.session.counter = 1
-//   }
-//   if (req.url === '/getState.json') {
-//     res.send({
-//       number: req.session.counter,
-//       str: 'init state'
-//     })
-//   }
-//   next()
-// })
 
+//  session使用示例
+app.use(function (req, res, next) {
+  console.log(req.session)
+  if (req.session.counter) {
+    req.session.counter++
+  } else {
+    req.session.counter = 1
+  }
+  if (req.url === '/getState.json') {
+    let temp = ""
+
+    res.send({
+      number: req.session.counter,
+      str: temp
+    })
+  }
+  next()
+})
 
 
 module.exports = app
