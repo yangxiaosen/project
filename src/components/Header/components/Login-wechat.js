@@ -29,7 +29,6 @@ const WechatLogin = React.createClass({
 
     const body = document.getElementsByTagName('body')[0]
     function createWxDiv  () {
-
       setTimeout(function() {
         var obj = new WxLogin({
           id:"login_container",
