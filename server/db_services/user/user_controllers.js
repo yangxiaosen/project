@@ -89,7 +89,7 @@ exports.updateUser = function (req, res) {
         newUser.save(function (err) {
           if (err) {
             return res.status(400).send({
-              message: ''
+              message: 'update failed'
             })
           } else {
             res.send({ message: 'update success' })
@@ -133,7 +133,18 @@ exports.activateOrInvalidUser = function (req, res) {
 
 // 根据ID或username找到对应用户
 exports.findUser = function (field, value) {
-  let query = { _id: value }
+  let query = {};
+  if(field === '_id') {
+    query = { _id: value };
+  } else if (field === 'username') {
+    query = { username: value };
+  } else if (field === 'wechat') {
+    query = { wechat: value };
+  } else if (field === 'phone') {
+    query = { phone: value };
+  } else if (field === 'email') {
+    query = { email: value };
+  } ;
   console.log(query)
   User.find(query).exec(function (err, user) {
     if (err) {

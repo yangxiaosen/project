@@ -28,10 +28,11 @@ app.use(function (req, res, next) {
 })
 
 const db = require('./config/db_connection')
-const User = require('./db_services/user/user_controllers')
+const User = require('./db_services/user/user_controllers');
+const Wechat = require('./db_services/user/wechat_check_controllers');
 const UserData = require('./db_services/user_data/user_data_controller')
 const SendEmail = require('./db_services/common_functions/sendEmail')
-
+const Resume = require('./db_services/resumes/resumes_controllers');
 const Users = mongoose.model('UserModel', require('./db_services/user/user_models').UserSchema)
 
 // app.use(cookieParser('what do you want to do?'));
@@ -79,7 +80,7 @@ app.post('/api/project/signin', function (req, res) {
         req.session.username = req.body.username
         req.session.password = req.body.password
         console.log(req.session.name)
-        res.send('sign success')
+        res.send(user);
       } else {
         res.send('sign failed, name or password error')
       }
@@ -140,6 +141,30 @@ app.get('/api/project/sendEmail', function (req, res) {
 })
 
 /**
+ * 关于wechat 操作
+ */
+// 使用wechat登录
+// 传入参数  code  微信扫码后得到的code
+app.get('/api/project/user/wechat/Login', function (req, res) {
+  Wechat.wechatLogin(req, res);
+});
+
+/**
+ * 帐号与微信绑定
+ * 传入参数  code  微信扫码后得到的code
+ *          _id   帐号唯一标识符（mongodb数据id）
+ */
+app.get('/api/project/user/wechat/binding', function (req, res) {
+  Wechat.wechatBinding(req, res);
+});
+
+// 帐号与微信绑定
+// 传入参数  _id   帐号唯一标识符（mongodb数据id）
+app.get('/api/project/user/wechat/unbinding', function (req, res) {
+  Wechat.wechatUnbinding(req, res);
+});
+
+/**
  * 对user_data表的操作，包括：
  *       getUserDataById： 根据Id获得用户数据user_data
  *       updataUserDataById: 根据Id修改用户数据
@@ -154,6 +179,20 @@ app.get('/api/project/userData/getUserDataById', function (req, res) {
 app.post('/api/project/userData/updateUserDataById', function (req, res) {
   UserData.updateUserDataInformationById(req, res)
 })
+
+
+/**
+ * 对resume表的操作
+ * 1.createResume 创建简历
+ * 2.updateResume 修改更新简历
+ */
+app.post('/api/project/resume/createResume', function (req, res) {
+  Resume.createResume(req, res);
+});
+
+app.post('/api/project/resume/updateResume', function (req, res) {
+  Resume.updateResume(req, res);
+});
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
