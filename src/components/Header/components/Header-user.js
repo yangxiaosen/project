@@ -4,6 +4,7 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import $ from 'jquery'
+import WechatLogin from './Login-wechat'
 
 const User = React.createClass({
   componentDidMount () {
@@ -13,9 +14,8 @@ const User = React.createClass({
       url: '/api/project/signin',
       method: 'GET'
     }).done(function (data) {
-      console.log(data)
       if (data !== 'sign first') {
-        console.log(that)
+        console.log(data)
         that.props.login(data)
       }
     })
@@ -35,7 +35,8 @@ const User = React.createClass({
       if (data === 'sign failed, name or password error') {
         alert('账号或者密码错误')
       } else {
-        that.props.login(that.refs.username.value)
+        //that.props.login(that.refs.username.value)
+        that.props.login(data[0])
       }
     })
   },
@@ -54,7 +55,7 @@ const User = React.createClass({
     if (isLogin) {
       return (
         <div>
-          <div> user: {this.props.user} </div>
+          <div> user: {this.props.user.username} </div>
           <button onClick={this.btnsignOut}>sign out</button>
         </div>
       )
@@ -65,6 +66,7 @@ const User = React.createClass({
         <input ref='password' type='text' placeholder='password' />
         <button onClick={this.btnLogin}>login</button>
         <button onClick={this.btnSignUp}>sign up</button>
+        <WechatLogin> </WechatLogin>
       </div>
     )
   },

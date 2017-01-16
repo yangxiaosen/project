@@ -20,7 +20,11 @@ export const createRoutes = (store) => ({
     {
       path        : '/signUp',
       component   : SignUpRoute
-    }
+    },
+    // {
+    //   path: '/login',
+    //   component: loginRoute,
+    // }
   ]
 })
 

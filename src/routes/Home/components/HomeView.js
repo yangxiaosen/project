@@ -2,6 +2,7 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
 import { Jumbotron, Button } from 'react-bootstrap'
+
 export const HomeView = () => (
   <Jumbotron>
     <h1>这是主页</h1>
