@@ -1,41 +1,86 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
-import User from '../containers/Header-container'
-import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
-
-// export const HeaderWhitBootstrap = React.createClass({
-//   render () {
-//     return (
-//       <Navbar collapseOnSelect>
-//         <Navbar.Header>
-//           <Navbar.Brand>
-//             <Link activeClassName='route--active' to="/">Main</Link>
-//           </Navbar.Brand>
-//           <Navbar.Toggle />
-//         </Navbar.Header>
-//
-//         <Navbar.Collapse>
-//           <Nav>
-//             <NavItem eventKey={1} href='/about'>about</NavItem>
-//             <NavItem eventKey={2}><Link to='counter' activeClassName='route--active'>counter</Link></NavItem>
-//             <NavDropdown eventKey={3} title='Dropdown' id='basic-nav-dropdown'>
-//               <MenuItem eventKey={3.1}>Action</MenuItem>
-//               <MenuItem eventKey={3.2}>Another action</MenuItem>
-//               <MenuItem eventKey={3.3}>Something else here</MenuItem>
-//               <MenuItem divider />
-//               <MenuItem eventKey={3.3}>Separated link</MenuItem>
-//             </NavDropdown>
-//           </Nav>
-//           <Nav pullRight>
-//             <NavItem eventKey={1}><User /></NavItem>
-//           </Nav>
-//         </Navbar.Collapse>
-//       </Navbar>
-//     )
-//   }
-// })
+import { Link } from 'react-router'
+import $ from 'jquery'
+import WechatLogin from './Login-wechat'
+import { browserHistory } from 'react-router'
 
 export const Header = React.createClass({
+  componentDidMount () {
+    const that = this
+    // 初始化的时候向服务器检查session,判断是否已经登录
+    $.ajax({
+      url: '/api/project/signin',
+      method: 'GET'
+    }).done(function (data) {
+      console.log(data)
+      if (data !== 'sign first') {
+        that.props.login(data)
+      }
+    })
+  },
+  btnSignUp () {
+    browserHistory.push('/signUp')
+  },
+  btnLogin (e) {
+    const that = this
+    e.preventDefault()
+    $.ajax({
+      url: '/api/project/signin',
+      method: 'POST',
+      data: {
+        username: that.refs.username.value,
+        password: that.refs.password.value
+      }
+    }).done(function (data) {
+      if (data === 'sign failed, name or password error') {
+        alert('账号或者密码错误')
+      } else {
+        //that.props.login(that.refs.username.value)
+        localStorage.userName = data[0].username;
+        localStorage.wechat = data[0].wechat;
+        localStorage.phone = data[0].phone;
+        localStorage.isActive = data[0].isActive;
+
+        that.props.login(data[0].username)
+      }
+    })
+  },
+  btnSignOut (e) {
+    localStorage.clear()
+    e.preventDefault()
+    $.ajax({
+      url: '/api/project/signout',
+      method: 'GET'
+    })
+    this.props.signOut()
+  },
+  user (isLogin) {
+    if (isLogin) {
+      return (
+        <div>
+          <div> user: {this.props.user} </div>
+          <button onClick={this.btnSignOut}>sign out</button>
+        </div>
+      )
+    }
+    return (
+      <li className="dropdown">
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span className="caret"> </span></a>
+        <ul className="dropdown-menu">
+          <div>
+            <div>
+              <input ref='username' type='text' placeholder='user' />
+              <input ref='password' type='text' placeholder='password' />
+              <button onClick={this.btnLogin}>login</button>
+              <button onClick={this.btnSignUp}>sign up</button>
+              <WechatLogin> </WechatLogin>
+            </div>
+          </div>
+        </ul>
+      </li>
+
+    )
+  },
   active(navName){
     if(navName === this.props.location.pathname) {
       return "active"
@@ -59,15 +104,9 @@ export const Header = React.createClass({
             <ul className="nav navbar-nav">
               <li className={this.active("/about")}><Link to="/about">ABOUT</Link></li>
               <li className={this.active("/counter")}><Link to="/counter">counter</Link></li>
-
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span className="caret"> </span></a>
-                <ul className="dropdown-menu">
-                  <User />
-                </ul>
-              </li>
+              {this.user(this.props.isLogin)}
             </ul>
           </div>
         </div>
