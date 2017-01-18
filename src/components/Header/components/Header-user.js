@@ -66,6 +66,19 @@ const User = React.createClass({
       )
     }
     return (
+        <div>
+          <input ref='username' type='text' placeholder='user' />
+          <input ref='password' type='text' placeholder='password' />
+          <button onClick={this.btnLogin}>login</button>
+          <button onClick={this.btnSignUp}>sign up</button>
+          <WechatLogin> </WechatLogin>
+        </div>
+    )
+  },
+
+  render () {
+    const { isLogin, user } = this.props
+    return (
       <div>
         <input ref='username' type='text' placeholder='user' />
         <input ref='password' type='text' placeholder='password' />
@@ -74,20 +87,7 @@ const User = React.createClass({
         <WechatLogin> </WechatLogin>
       </div>
     )
-  },
-
-  render () {
-    const { isLogin, user } = this.props
-    return (
-      <div>
-        { this.user(isLogin, user) }
-      </div>
-    )
   }
 })
-
-User.propTypes = {
-
-}
 
 export default User
