@@ -14,8 +14,8 @@ const User = React.createClass({
       url: '/api/project/signin',
       method: 'GET'
     }).done(function (data) {
+      console.log(data)
       if (data !== 'sign first') {
-        console.log(data)
         that.props.login(data)
       }
     })
@@ -31,16 +31,21 @@ const User = React.createClass({
         password: that.refs.password.value
       }
     }).done(function (data) {
-      console.log(data)
       if (data === 'sign failed, name or password error') {
         alert('账号或者密码错误')
       } else {
         //that.props.login(that.refs.username.value)
-        that.props.login(data[0])
+        localStorage.userName = data[0].username;
+        localStorage.wechat = data[0].wechat;
+        localStorage.phone = data[0].phone;
+        localStorage.isActive = data[0].isActive;
+
+        that.props.login(data[0].username)
       }
     })
   },
   btnsignOut (e) {
+    localStorage.clear()
     e.preventDefault()
     $.ajax({
       url: '/api/project/signout',
@@ -55,7 +60,7 @@ const User = React.createClass({
     if (isLogin) {
       return (
         <div>
-          <div> user: {this.props.user.username} </div>
+          <div> user: {this.props.user} </div>
           <button onClick={this.btnsignOut}>sign out</button>
         </div>
       )
