@@ -80,7 +80,9 @@ app.post('/api/project/signin', function (req, res) {
         req.session.username = req.body.username
         req.session.password = req.body.password
         console.log(req.session.name)
-        res.send(user);
+
+        res.send(user)
+
       } else {
         res.send('sign failed, name or password error')
       }
