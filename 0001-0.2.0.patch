@@ -1,0 +1,27 @@
+From cd32523652193e0179b73e483e22a2f556307426 Mon Sep 17 00:00:00 2001
+From: arluber <lqygo1234@qq.com>
+Date: Tue, 10 Jan 2017 21:18:39 +0800
+Subject: [PATCH] =?UTF-8?q?0.2.0=20=E2=88=9A?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package.json b/package.json
+index 5783285..b051cd2 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "project",
+-  "version": "0.1.0",
++  "version": "0.2.0",
+   "description": "nothing",
+   "main": "index.js",
+   "engines": {
+-- 
+2.7.4
+
