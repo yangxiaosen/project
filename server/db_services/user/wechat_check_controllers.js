@@ -26,7 +26,7 @@ exports.wechatLogin = function (req, res) {
     getUserinfoByToken(token, function (userinfo) {
       // console.log(userinfo);
       // res.send(userinfo);
-      UserModel.find({wechat: userinfo.unionid}).exec(function (err, user) {
+      UserModel.find({ wechat: userinfo.unionid }).exec(function (err, user) {
         if(err) {
           return 'login failed, please try again'
         } else {
@@ -37,7 +37,7 @@ exports.wechatLogin = function (req, res) {
             console.log(req.session.name)
             res.send(user);
           } else {
-            req.body = {wechat: userinfo.unionid};
+            req.body = { wechat: userinfo.unionid };
             User.create(req, res);
           }
         }

@@ -5,7 +5,7 @@ import headerReducer from '../components/Header/modules/Header-module'
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
-    header: headerReducer,
+    user: headerReducer,
     ...asyncReducers
   })
 }

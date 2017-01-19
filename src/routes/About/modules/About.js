@@ -65,28 +65,21 @@ const initialState = {
 
 export default function aboutReducer (state = initialState, action) {
   switch (action.type) {
-
     case 'ABOUT_NUMBER_INCREMENT':
       return {
         number: state.number + action.num,
         str: state.str
       }
-      break
-
     case 'ABOUT_ADD_STR':
       return {
         number: state.number,
         str: state.str + action.str
       }
-      break
-
     case 'ABOUT_INIT':
       return {
         number: action.number,
         str: action.str
       }
-      break
-
     default:
       return state
   }
