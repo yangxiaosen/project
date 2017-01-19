@@ -6,15 +6,12 @@ import React from 'react'
 const UserManagement = React.createClass({
   render() {
     return (
-      <div style={{ margin: '0 auto' }} >
-        <h2>Counter: {props.counter}</h2>
-        <button className='btn btn-default' onClick={props.increment}>
-          Increment
-        </button>
-        {' '}
-        <button className='btn btn-default' onClick={props.doubleAsync}>
-          Double (Async)
-        </button>
+      <div className='input-group'>
+        <span className='input-group-addon'>微信</span>
+        <input type='text' className='form-control' disabled='true' placeholder='Wechat (未绑定)'/>
+        <span className='input-group-btn'>
+          <button className='btn btn-default' type='button'>关联账号</button>
+        </span>
       </div>
     )
   }

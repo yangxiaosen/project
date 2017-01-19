@@ -43,7 +43,7 @@ const WechatLogin = React.createClass({
           <Modal.Header closeButton>
           </Modal.Header>
           <Modal.Body>
-            <div id="login_container"> </div>
+            <div id='login_container'> </div>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
