@@ -4,8 +4,8 @@
 import React from 'react'
 import Header from '../../components/Header'
 
-import './CoreLayout.scss'
-import '../../styles/core.scss'
+import './CoreLayout.css'
+import '../../styles/core.css'
 
 const Layout = React.createClass({
   render () {

@@ -64,9 +64,17 @@ export const Header = React.createClass({
       )
     }
     return (
-      <li className="dropdown">
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span className="caret"> </span></a>
-        <ul className="dropdown-menu">
+      <li className='dropdown'>
+        <a href='#'
+           className='dropdown-toggle'
+           data-toggle='dropdown' role='button'
+           aria-haspopup='true'
+           aria-expanded='false'>
+
+          Login
+          <span className='caret'> </span>
+        </a>
+        <ul className='dropdown-menu'>
           <div>
             <div>
               <input ref='username' type='text' placeholder='user' />
@@ -88,24 +96,28 @@ export const Header = React.createClass({
   },
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"> </span>
-              <span className="icon-bar"> </span>
-              <span className="icon-bar"> </span>
+      <nav className='navbar navbar-default'>
+        <div className='container-fluid'>
+          <div className='navbar-header'>
+            <button type='button'
+                    className='navbar-toggle collapsed'
+                    data-toggle='collapse'
+                    data-target='#bs-example-navbar-collapse-1'
+                    aria-expanded='false'>
+              <span className='sr-only'>Toggle navigation</span>
+              <span className='icon-bar'> </span>
+              <span className='icon-bar'> </span>
+              <span className='icon-bar'> </span>
             </button>
-            <Link className="navbar-brand" to="/">Main</Link>
+            <Link className='navbar-brand' to='/'>Main</Link>
           </div>
 
-          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul className="nav navbar-nav">
-              <li className={this.active("/about")}><Link to="/about">ABOUT</Link></li>
-              <li className={this.active("/counter")}><Link to="/counter">counter</Link></li>
+          <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+            <ul className='nav navbar-nav'>
+              <li className={this.active("/about")}><Link to='/about'>ABOUT</Link></li>
+              <li className={this.active("/counter")}><Link to='/counter'>counter</Link></li>
             </ul>
-            <ul className="nav navbar-nav navbar-right">
+            <ul className='nav navbar-nav navbar-right'>
               {this.user(this.props.isLogin)}
             </ul>
           </div>
