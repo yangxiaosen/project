@@ -24,19 +24,29 @@ export const actions = {
   unbindWechat
 }
 
+function judgeIsLogin() {
+  if(localStorage.userName=="" || undefined){
+    return false
+  }
+  else return true
+}
+
 const initialState = {
-  wechat: localStorage.wechat
+  wechat: localStorage.wechat,
+  account: localStorage.userName
 }
 
 export default function userReducer (state = initialState, action) {
   switch(action.type) {
     case BINDING_WECHAT :
       return {
-        wechat: action.wechat
+        wechat: action.wechat,
+        user: localStorage.isLogin
       }
     case UNBINDING_WECHAT :
       return {
-        wechat: ""
+        wechat: "",
+        user: localStorage.isLogin
       }
     default:
       return state

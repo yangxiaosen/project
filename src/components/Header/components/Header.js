@@ -15,6 +15,8 @@ export const Header = React.createClass({
       console.log(data)
       if (data !== 'sign first') {
         that.props.login(data)
+      } else {
+        localStorage.clear()
       }
     })
   },
@@ -36,11 +38,11 @@ export const Header = React.createClass({
         alert('账号或者密码错误')
       } else {
         //that.props.login(that.refs.username.value)
+        localStorage.userId = data[0].dataId
         localStorage.userName = data[0].username;
         localStorage.wechat = data[0].wechat;
         localStorage.phone = data[0].phone;
         localStorage.isActive = data[0].isActive;
-
         that.props.login(data[0].username)
       }
     })

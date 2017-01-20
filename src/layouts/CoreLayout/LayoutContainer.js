@@ -7,8 +7,8 @@ import Layout from './CleanLayout'
 
 function mapStateToProps (state) {
   return {
-    isLogin: state.user.isLogin,
-    user: state.user.user
+    isLogin: state.header.isLogin,
+    user: state.header.user
   }
 }
 

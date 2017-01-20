@@ -15,8 +15,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  isLogin: state.user.isLogin,
-  user:    state.user.userName
+  isLogin: state.header.isLogin,
+  user:    state.header.userName
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

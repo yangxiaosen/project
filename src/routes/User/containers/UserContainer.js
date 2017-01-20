@@ -13,8 +13,9 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  isLogin : state.user.isLogin,
-  wechat: state.user.wechat
+  isLogin : state.header.isLogin,
+  wechat: state.user.wechat,
+  account: state.user.account
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)

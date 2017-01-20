@@ -28,6 +28,7 @@ export const actions = {
 // Reducer
 
 const initeState = {
+  userId: null,
   isLogin: false,
   user: null,
   password: null

@@ -8,8 +8,8 @@ import popUp from './SignUp-popUp-component'
 
 function mapStateToProps (state) {
   return {
-    isLogin: state.header.isLogin,
-    user: state.header.user
+    isLogin: state.user.isLogin,
+    user: state.user.user
   }
 }
 
