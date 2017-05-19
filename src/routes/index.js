@@ -7,6 +7,8 @@ import CounterRoute from './Counter'
 import AboutRoute from './About'
 import SignUpRoute from './SignUp'
 import UserRoute from './User'
+import Yang1Route from './Yang1'
+import Yang2Route from './Yang2'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -16,6 +18,8 @@ export const createRoutes = (store) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
+    Yang2Route(),
+    Yang1Route(store),
     CounterRoute(store),
     AboutRoute(store),
     {
